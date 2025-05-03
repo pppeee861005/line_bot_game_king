@@ -15,7 +15,7 @@
  * @update 1.3.1 - 修復⚔符號顯示問題，使用cycles值判斷王是否已過期
  */
 
-var VERSION = "1.3.1";    // 程式版本號
+var VERSION = "1.3.2";    // 程式版本號
 var spreadSheetConfig = SpreadsheetApp.getActive();    // 獲取當前活動的試算表
 var sheetConfig = spreadSheetConfig.getSheetByName("參數設定");    // 取得參數設定工作表
 var sheetConfigData = sheetConfig.getSheetValues(1, 2, sheetConfig.getLastRow(), sheetConfig.getLastColumn() - 1);    // 獲取設定數據
@@ -526,7 +526,7 @@ function updateCellTime(message) {
       return [{type: "text", text: "無效的王編號"}];
     }
     const now = new Date();
-    const cell = sheet.getRange(bossNumber + 2, 4);
+    const cell = sheet.getRange(bossNumber + 2, 3);
     cell.setValue(now);
     return [{
       type: "text",
@@ -579,7 +579,7 @@ function updateCellTime(message) {
   }
   
   // 更新時間
-  sheet.getRange(rowNumber, 4).setValue(now);
+  sheet.getRange(rowNumber, 3).setValue(now);
   return [{
     type: "text",
     text: `已更新「${data[rowNumber-2][0]}」的時間為 ${now.toLocaleString()}`
